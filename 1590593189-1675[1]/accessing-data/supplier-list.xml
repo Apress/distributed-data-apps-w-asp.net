@@ -1,0 +1,148 @@
+<?xml version="1.0" standalone="yes" ?>
+<SupplierList>
+ <Suppliers>
+  <SupplierName>Exotic Liquids</SupplierName>
+  <SupplierAddress>49 Gilbert St., London, , EC1 4SD, UK</SupplierAddress>
+  <SupplierContact>Charlotte Cooper - Phone:(171) 555-2222 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>New Orleans Cajun Delights</SupplierName>
+  <SupplierAddress>P.O. Box 78934, New Orleans, LA, 70117, USA</SupplierAddress>
+  <SupplierContact>Shelley Burke - Phone:(100) 555-4822 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Grandma Kelly's Homestead</SupplierName>
+  <SupplierAddress>707 Oxford Rd., Ann Arbor, MI, 48104, USA</SupplierAddress>
+  <SupplierContact>Regina Murphy - Phone:(313) 555-5735 Fax:(313) 555-3349</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Tokyo Traders</SupplierName>
+  <SupplierAddress>9-8 Sekimai Musashino-shi, Tokyo, , 100, Japan</SupplierAddress>
+  <SupplierContact>Yoshi Nagase - Phone:(03) 3555-5011 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Cooperativa de Quesos 'Las Cabras'</SupplierName>
+  <SupplierAddress>Calle del Rosal 4, Oviedo, Asturias, 33007, Spain</SupplierAddress>
+  <SupplierContact>Antonio del Valle Saavedra - Phone:(98) 598 76 54 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Mayumi's</SupplierName>
+  <SupplierAddress>92 Setsuko Chuo-ku, Osaka, , 545, Japan</SupplierAddress>
+  <SupplierContact>Mayumi Ohno - Phone:(06) 431-7877 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Pavlova, Ltd.</SupplierName>
+  <SupplierAddress>74 Rose St. Moonie Ponds, Melbourne, Victoria, 3058, Australia</SupplierAddress>
+  <SupplierContact>Ian Devling - Phone:(03) 444-2343 Fax:(03) 444-6588</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Specialty Biscuits, Ltd.</SupplierName>
+  <SupplierAddress>29 King's Way, Manchester, , M14 GSD, UK</SupplierAddress>
+  <SupplierContact>Peter Wilson - Phone:(161) 555-4448 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>PB Knackebrod AB</SupplierName>
+  <SupplierAddress>Kaloadagatan 13, Goteborg, , S-345 67, Sweden</SupplierAddress>
+  <SupplierContact>Lars Peterson - Phone:031-987 65 43 Fax:031-987 65 91</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Refrescos Americanas LTDA</SupplierName>
+  <SupplierAddress>Av. das Americanas 12.890, Sao Paulo, , 5442, Brazil</SupplierAddress>
+  <SupplierContact>Carlos Diaz - Phone:(11) 555 4640 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Heli Subwaren GmbH and Co. KG</SupplierName>
+  <SupplierAddress>Tiergartenstrabe 5, Berlin, , 10785, Germany</SupplierAddress>
+  <SupplierContact>Petra Winkler - Phone:(010) 9984510 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Plutzer Lebensmittelgrobmarkte AG</SupplierName>
+  <SupplierAddress>Bogenallee 51, Frankfurt, , 60439, Germany</SupplierAddress>
+  <SupplierContact>Martin Bein - Phone:(069) 992755 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Nord-Ost-Fisch Handelsgesellschaft mbH</SupplierName>
+  <SupplierAddress>Frahmredder 112a, Cuxhaven, , 27478, Germany</SupplierAddress>
+  <SupplierContact>Sven Petersen - Phone:(04721) 8713 Fax:(04721) 8714</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Formaggi Fortini s.r.l.</SupplierName>
+  <SupplierAddress>Viale Dante, 75, Ravenna, , 48100, Italy</SupplierAddress>
+  <SupplierContact>Elio Rossi - Phone:(0544) 60323 Fax:(0544) 60603</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Norske Meierier</SupplierName>
+  <SupplierAddress>Hatlevegen 5, Sandvika, , 1320, Norway</SupplierAddress>
+  <SupplierContact>Beate Vileid - Phone:(0)2-953010 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Bigfoot Breweries</SupplierName>
+  <SupplierAddress>3400 - 8th Avenue Suite 210, Bend, OR, 97101, USA</SupplierAddress>
+  <SupplierContact>Cheryl Saylor - Phone:(503) 555-9931 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Svensk Sjofoda AB</SupplierName>
+  <SupplierAddress>Brovallavagen 231, Stockholm, , S-123 45, Sweden</SupplierAddress>
+  <SupplierContact>Michael Bjorn - Phone:08-123 45 67 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Aux joyeux ecclesiastiques</SupplierName>
+  <SupplierAddress>203, Rue des Francs-Bourgeois, Paris, , 75004, France</SupplierAddress>
+  <SupplierContact>Guylene Nodier - Phone:(1) 03.83.00.68 Fax:(1) 03.83.00.62</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>New England Seafood Cannery</SupplierName>
+  <SupplierAddress>Order Processing Dept. 2100 Paul Revere Blvd., Boston, MA, 02134, USA</SupplierAddress>
+  <SupplierContact>Robb Merchant - Phone:(617) 555-3267 Fax:(617) 555-3389</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Leka Trading</SupplierName>
+  <SupplierAddress>471 Serangoon Loop, Suite #402, Singapore, , 0512, Singapore</SupplierAddress>
+  <SupplierContact>Chandra Leka - Phone:555-8787 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Lyngbysild</SupplierName>
+  <SupplierAddress>Lyngbysild Fiskebakken 10, Lyngby, , 2800, Denmark</SupplierAddress>
+  <SupplierContact>Niels Petersen - Phone:43844108 Fax:43844115</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Zaanse Snoepfabriek</SupplierName>
+  <SupplierAddress>Verkoop Rijnweg 22, Zaandam, , 9999 ZZ, Netherlands</SupplierAddress>
+  <SupplierContact>Dirk Luchte - Phone:(12345) 1212 Fax:(12345) 1210</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Karkki Oy</SupplierName>
+  <SupplierAddress>Valtakatu 12, Lappeenranta, , 53120, Finland</SupplierAddress>
+  <SupplierContact>Anne Heikkonen - Phone:(953) 10956 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>G'day, Mate</SupplierName>
+  <SupplierAddress>170 Prince Edward Parade Hunter's Hill, Sydney, NSW, 2042, Australia</SupplierAddress>
+  <SupplierContact>Wendy Mackenzie - Phone:(02) 555-5914 Fax:(02) 555-4873</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Ma Maison</SupplierName>
+  <SupplierAddress>2960 Rue St. Laurent, Montreal, Quebec, H1J 1C3, Canada</SupplierAddress>
+  <SupplierContact>Jean-Guy Lauzon - Phone:(514) 555-9022 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Pasta Buttini s.r.l.</SupplierName>
+  <SupplierAddress>Via dei Gelsomini, 153, Salerno, , 84100, Italy</SupplierAddress>
+  <SupplierContact>Giovanni Giudici - Phone:(089) 6547665 Fax:(089) 6547667</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Escargots Nouveaux</SupplierName>
+  <SupplierAddress>22, rue H. Voiron, Montceau, , 71300, France</SupplierAddress>
+  <SupplierContact>Marie Delamare - Phone:85.57.00.07 Fax:</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Gai paturage</SupplierName>
+  <SupplierAddress>Bat. B 3, rue des Alpes, Annecy, , 74000, France</SupplierAddress>
+  <SupplierContact>Eliane Noz - Phone:38.76.98.06 Fax:38.76.98.58</SupplierContact>
+ </Suppliers>
+ <Suppliers>
+  <SupplierName>Forets d'erables</SupplierName>
+  <SupplierAddress>148 rue Chasseur, Ste-Hyacinthe, Quebec, J2S 7S8, Canada</SupplierAddress>
+  <SupplierContact>Chantal Goulet - Phone:(514) 555-2955 Fax:(514) 555-2921</SupplierContact>
+ </Suppliers>
+</SupplierList>

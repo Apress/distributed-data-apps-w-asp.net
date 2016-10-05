@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Local", "Local.csproj", "{2AEB7027-A58A-4F87-B888-BBC2B22B4933}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectString", "..\..\cs-components\ConnectString\ConnectString.csproj", "{DFE04D65-12AA-49D6-A8CE-1A5140AE3848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderListDB", "..\..\cs-components\OrderListDB\OrderListDB.csproj", "{9787D62E-59DC-4683-B713-7AC3CDA9AE97}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.0 = {DFE04D65-12AA-49D6-A8CE-1A5140AE3848}
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.1 = {9787D62E-59DC-4683-B713-7AC3CDA9AE97}
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.Debug.ActiveCfg = Debug|.NET
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.Debug.Build.0 = Debug|.NET
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.Release.ActiveCfg = Release|.NET
+		{2AEB7027-A58A-4F87-B888-BBC2B22B4933}.Release.Build.0 = Release|.NET
+		{DFE04D65-12AA-49D6-A8CE-1A5140AE3848}.Debug.ActiveCfg = Debug|.NET
+		{DFE04D65-12AA-49D6-A8CE-1A5140AE3848}.Debug.Build.0 = Debug|.NET
+		{DFE04D65-12AA-49D6-A8CE-1A5140AE3848}.Release.ActiveCfg = Release|.NET
+		{DFE04D65-12AA-49D6-A8CE-1A5140AE3848}.Release.Build.0 = Release|.NET
+		{9787D62E-59DC-4683-B713-7AC3CDA9AE97}.Debug.ActiveCfg = Debug|.NET
+		{9787D62E-59DC-4683-B713-7AC3CDA9AE97}.Debug.Build.0 = Debug|.NET
+		{9787D62E-59DC-4683-B713-7AC3CDA9AE97}.Release.ActiveCfg = Release|.NET
+		{9787D62E-59DC-4683-B713-7AC3CDA9AE97}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

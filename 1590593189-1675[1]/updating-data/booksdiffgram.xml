@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="yes"?>
+<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+  <NewDataSet>
+    <Books diffgr:id="Books1" msdata:rowOrder="0">
+      <ISBN>1861003323</ISBN>
+      <Date>2000-03-01</Date>
+      <Name>Britt</Name>
+    </Books>
+    <Books diffgr:id="Books2" msdata:rowOrder="1" diffgr:hasChanges="modified">
+      <ISBN>1861003315</ISBN>
+      <Date>2001-09-15</Date>
+      <Name>Chang</Name>
+    </Books>
+    <Books diffgr:id="Books4" msdata:rowOrder="3" diffgr:hasChanges="modified">
+      <ISBN>1861003401</ISBN>
+      <Date>2001-02-10</Date>
+      <Name>Millington</Name>
+    </Books>
+    <Books diffgr:id="Books5" msdata:rowOrder="4" diffgr:hasChanges="inserted">
+      <ISBN>1861004923</ISBN>
+      <Date>2002-03-02</Date>
+      <Name>Sussman</Name>
+    </Books>
+  </NewDataSet>
+  <diffgr:before>
+    <Books diffgr:id="Books2" msdata:rowOrder="1">
+      <ISBN>1861003315</ISBN>
+      <Date>2001-10-22</Date>
+      <Name>Burnham</Name>
+    </Books>
+    <Books diffgr:id="Books3" msdata:rowOrder="2">
+      <ISBN>1861003382</ISBN>
+      <Date>1999-07-15</Date>
+      <Name>Busar</Name>
+    </Books>
+    <Books diffgr:id="Books4" msdata:rowOrder="3">
+      <ISBN>1861003401</ISBN>
+      <Date>1998-11-09</Date>
+      <Name>Kauffman</Name>
+    </Books>
+  </diffgr:before>
+</diffgr:diffgram>

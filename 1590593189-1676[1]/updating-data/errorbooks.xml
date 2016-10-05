@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Books>
+    <ISBN>1861003323</ISBN>
+    <Date>2000-03-01</Date>
+    <Name>Britt</Name>
+  </Books>
+  <Books>
+    <ISBN>1861003315</ISBN>
+    <Date>2001-10-22</Date>
+    <ExtraDate>2001-10-22</ExtraDate>
+    <Name>Burnham</Name>
+  </Books>
+  <Books>
+    <ISBN>1861003382</ISBN>
+    <Date>1999-07-15</Date>
+    <Name>Busar</Name>
+  </Books>
+  <Books>
+    <ISBN>1861003382</ISBN>
+    <Date>2000-08-30</Date>
+    <Name>Kauffman</Name>
+  </Books>
+</NewDataSet>

@@ -1,0 +1,170 @@
+<%@WebService Language="VB" Class="UpdateOrders"%>
+
+Imports DataSetUpdate
+Imports System
+Imports System.Data
+Imports System.Xml
+Imports System.Web
+Imports System.Web.Services
+Imports System.Configuration
+Imports Microsoft.VisualBasic
+
+<WebService(Description:="4923 Update Orders Service", _
+ Namespace:="http://www.daveandal.net/books/4923//webservices/4923/update-orders" _
+ )> Public Class UpdateOrders
+
+'------------------------------------------------------------------
+
+<WebMethod> Public Function GetOrdersDataSet(strCustID As String) As DataSet
+'uses data access component to get DataSet containing matching order details
+
+  Dim objDataSet As DataSet
+
+  Try
+
+    'get connection string from web.config <appSettings> section
+    Dim strConnect As String
+    strConnect = ConfigurationSettings.AppSettings("NorthwindConnectString")
+
+    'create an instance of the data access component
+    Dim objOrderUpdate As New UpdateDataSet(strConnect)
+
+    'call component to get DataSet containing order details for customer
+    objDataSet = objOrderUpdate.GetOrderDetails(strCustID)
+
+    'add column containing total value of each line in OrderLines table
+    Dim objLinesTable As DataTable = objDataSet.Tables("Order Details")
+    Dim objColumn As DataColumn
+    objColumn = objLinesTable.Columns.Add("LineTotal", System.Type.GetType("System.Double"))
+    objColumn.Expression = "[Quantity] * ([UnitPrice] - ([UnitPrice] * [Discount]))"
+
+    'return the DataSet to the calling routine
+    Return objDataSet
+
+  Catch objErr As Exception
+
+    'there was an error so no data is returned
+    Return Nothing
+
+  End Try
+
+End Function
+
+'--------------------------------------------------------------
+
+<WebMethod> Public Function GetShippersDataSet() As DataSet
+'uses data access component to get DataSet containing all shipper details
+
+  Try
+
+    'get connection string from web.config <appSettings> section
+    Dim strConnect As String
+    strConnect = ConfigurationSettings.AppSettings("NorthwindConnectString")
+
+    'create an instance of the data access component
+    Dim objOrderUpdate As New UpdateDataSet(strConnect)
+
+    'call component to get DataSet containing shipper details
+    Return objOrderUpdate.GetShippersDataSet()
+
+  Catch objErr As Exception
+
+    'there was an error so no data is returned
+    Return Nothing
+
+  End Try
+
+End Function
+
+'--------------------------------------------------------------
+
+<WebMethod> Public Function GetProductsDataSet() As DataSet
+'uses data access component to get DataSet containing all product details
+
+  Try
+
+    'get connection string from web.config <appSettings> section
+    Dim strConnect As String
+    strConnect = ConfigurationSettings.AppSettings("NorthwindConnectString")
+
+    'create an instance of the data access component
+    Dim objOrderUpdate As New UpdateDataSet(strConnect)
+
+    'call component to get DataSet containing product list
+    Return objOrderUpdate.GetProductsDataSet()
+
+  Catch objErr As Exception
+
+    'there was an error so no data is returned
+    Return Nothing
+
+  End Try
+
+End Function
+
+'--------------------------------------------------------------
+
+<WebMethod> Public Function UpdateAllOrders(strCustID As String, _
+                            strDiffGram As String) As DataSet
+'uses data access component to update all edits to orders when
+'client is a Web Browser sending updates via a DiffGram as a String
+
+  'while Web Services support DataSet objects directly, the IE5
+  'Web Service Behavior (Beta) does not, so data is sent to the
+  'server as an HTMLEncoded string we have to decode
+  strDiffGram = HttpUtility.HtmlDecode(strDiffGram)
+
+  'create new DataSet to load diffgram
+  Dim objDataSet As New DataSet()
+
+  Try
+
+    'read the schema into the DataSet from file on disk
+    'must use the Physical path to the file not the Virtual path
+    'need reference to a Request object to use MapPath method
+    Dim m_Context As HttpContext = HttpContext.Current
+
+    objDataSet.ReadXmlSchema(m_Context.Request.MapPath("orders-schema.xsd"))
+
+  Catch
+  End Try
+
+  Try
+
+    'create an XmlTextReader to read data sent from client
+    'specifying that string fragment is an XML Document
+    Dim objReader As New XmlTextReader(strDiffGram, _
+                         XmlNodeType.Document, Nothing)
+
+    'read in the DiffGram posted from the client
+    objDataSet.ReadXml(objReader, XmlReadMode.DiffGram)
+
+  Catch
+  End Try
+
+  'kludge required to get correct RowState values in DataSet
+  objDataSet = objDataSet.GetChanges()
+
+  Try
+
+    'get connection string from web.config <appSettings> section
+    Dim strConnect As String
+    strConnect = ConfigurationSettings.AppSettings("NorthwindConnectString")
+
+    'create an instance of the data access component
+    Dim objOrderUpdate As New UpdateDataSet(strConnect)
+
+    'call function to do updates and return error rows only
+    '(due to kludge above, we can't return all rows)
+    Return objOrderUpdate.UpdateAllOrderDetails(strCustID, objDataSet)
+
+    Return objDataSet
+
+  Catch objErr As Exception
+  End Try
+
+End Function
+
+'------------------------------------------------------------------
+
+End Class

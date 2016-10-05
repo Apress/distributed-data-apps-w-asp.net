@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Orders.csproj", "{98B7A7B6-EEF1-496D-B2F5-3A6ED692BC1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOrders", "..\TestOrders\TestOrders.csproj", "{2C6647B1-16FC-4450-85F3-481B9C6F22AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{98B7A7B6-EEF1-496D-B2F5-3A6ED692BC1C}.Debug.ActiveCfg = Debug|.NET
+		{98B7A7B6-EEF1-496D-B2F5-3A6ED692BC1C}.Debug.Build.0 = Debug|.NET
+		{98B7A7B6-EEF1-496D-B2F5-3A6ED692BC1C}.Release.ActiveCfg = Release|.NET
+		{98B7A7B6-EEF1-496D-B2F5-3A6ED692BC1C}.Release.Build.0 = Release|.NET
+		{2C6647B1-16FC-4450-85F3-481B9C6F22AA}.Debug.ActiveCfg = Debug|.NET
+		{2C6647B1-16FC-4450-85F3-481B9C6F22AA}.Debug.Build.0 = Debug|.NET
+		{2C6647B1-16FC-4450-85F3-481B9C6F22AA}.Release.ActiveCfg = Release|.NET
+		{2C6647B1-16FC-4450-85F3-481B9C6F22AA}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

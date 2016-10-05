@@ -1,0 +1,364 @@
+<hta:application id="testapp"
+                 applicationname="testapplication"
+                 border="thick"
+                 caption="View Customer Orders - Select Customer"
+                 showintaskbar="yes"
+                 singleinstance="no"
+                 sysmenu="yes"
+                 windowstate="normal"
+                 navigable="yes"
+/>
+
+<html>
+<head>
+
+<title>View Customer Orders - Select Customer</title>
+<style type="text/css">
+body, td, tr, th {font-family:Tahoma,Arial,sans-serif; font-size:10pt}
+input, select {font-family:Tahoma,Arial,sans-serif; font-size:9pt}
+.heading {font-family:Tahoma,Arial,sans-serif; font-size:14pt; font-weight:bold}
+.subhead {font-family:Tahoma,Arial,sans-serif; font-size:12pt; font-weight:bold; padding-bottom:5px}
+.cite {font-family:Tahoma,Arial,sans-serif; font-size:8pt}
+</style>
+
+<!-------------- Client-side Script Section ---------------->
+
+<script language="JScript">
+<!--
+// define location of local disk files for persisting XML data
+var strCustomersLocalXMLPath = 'c:\\temp\\all-customers.xml';
+var strOrdersLocalXMLPath = 'c:\\temp\\all-orders.xml';
+
+// define location of remote server apps providing the data
+var strRemoteCustomersXML = 'http://daveandal.net/books/4923/customer-orders/hta/customer-data.aspx';
+var strRemoteOrdersXML = 'http://daveandal.net/books/4923/customer-orders/hta/order-data.aspx';
+
+// ** change these two lines to define location of server apps on your machine
+// var strRemoteCustomersXML = 'http://localhost/distrib-apps/vb/customer-orders/hta/customer-data.aspx';
+// var strRemoteOrdersXML = 'http://localhost/distrib-apps/vb/customer-orders/hta/order-data.aspx';
+
+var objXMLData;  // to hold reference to XML parser
+
+//----------------------------------------------------
+
+function pageLoadEvent() {
+// runs when the page is first opened to fetch the data
+
+  // try and load Orders data from local disk
+  if (loadXMLDocument(strOrdersLocalXMLPath, false, "Orders") == false) {
+
+    // try and load Orders data from remote server
+    if (loadXMLDocument(strRemoteOrdersXML, true, "Orders") == true) {
+
+      // try and save Orders data to local disk
+      if (saveLocalXML(strOrdersLocalXMLPath) == false) return;
+
+    }
+    else return;
+  }
+
+  // try and load Customers data from local disk
+  if (loadXMLDocument(strCustomersLocalXMLPath, false, "Customers") == false) {
+
+    // try and load Customers data from remote server
+    if (loadXMLDocument(strRemoteCustomersXML, true, "Customers") == true) {
+
+      // try and save Customers data to local disk
+      if (saveLocalXML(strCustomersLocalXMLPath) == false) return;
+    }
+  }
+
+  // clear "Loading" message
+  document.all('lblStatus').innerHTML = '';
+
+  // enable "Search" button
+  document.all('btnSearch').disabled = false;
+
+  // show Help details
+  showHelp();
+}
+//----------------------------------------------------
+
+function refreshData() {
+// runs when the link to refresh the data is clicked
+
+  // disable "Search" button
+  document.all('btnSearch').disabled = true;
+
+  var blnLoaded = false;
+
+  // try and load Orders data from remote server
+  blnLoaded = loadXMLDocument(strRemoteOrdersXML, true, "Orders");
+
+  if (blnLoaded == true)
+    // try and save Orders data to local disk
+    blnLoaded = saveLocalXML(strOrdersLocalXMLPath)
+  else
+    return;
+
+  // try and load Customers data from remote server
+  blnLoaded = loadXMLDocument(strRemoteCustomersXML, true, "Customers");
+
+  if (blnLoaded == true)
+    // try and save Customers data to local disk
+    blnLoaded = saveLocalXML(strCustomersLocalXMLPath);
+
+  if (blnLoaded == true)
+    // enable "Search" button
+    document.all('btnSearch').disabled = false;
+}
+//----------------------------------------------------
+
+function loadXMLDocument(strURL, blnRemote, strDisplay) {
+// load an XML document and return any error message
+
+  // create a new parser object instance
+  objXMLData = new ActiveXObject('MSXML2.FreeThreadedDOMDocument');
+
+  // set properties to validate while loading
+  objXMLData.validateOnParse = false;
+  objXMLData.async = false;
+
+  // clear results list and show "Loading" message
+  document.all('lblStatus').innerHTML = 'Loading ' + strDisplay + ' data...';
+  document.all('divResult').innerHTML = '';
+  document.all('lblMessage').innerHTML = '';
+
+  if (blnRemote == true) {
+    // prompt for remote download of data
+    var strPrompt = 'Download ' + strDisplay
+                  + ' data from remote server:\n' + strURL
+    if (confirm(strPrompt) == false)
+      return false;
+  }
+
+  // load customer list from local or remote server
+  objXMLData.load(strURL);
+
+  if (objXMLData.parseError.errorCode != 0) {
+
+    // there was an error while loading
+    // so display message
+    document.all('lblStatus').innerHTML =
+      '<b>* ERROR</b> - could not load data.<br />'
+      + objXMLData.parseError.reason;
+    return false;
+  }
+  else {
+
+    // show "Loaded OK" message
+    document.all('lblStatus').innerHTML = 'Data loaded OK.';
+    return true;
+  }
+}
+//----------------------------------------------------
+
+function saveLocalXML(strPath) {
+// saves the loaded docuemnt to the local disk
+
+  try {
+
+    // save the data to a local folder
+    objXMLData.save(strPath);
+    return true;
+
+  }
+  catch (objError) {
+
+    // can't save locally - display message
+    document.all('lblStatus').innerHTML = '<b>* WARNING</b> '
+      + '- could not save data to<br />local disk. You must have a '
+      + 'folder<br />named <b>temp</b> on your local hard disk<br />for '
+      + 'the data to be stored.';
+  }
+  return false;
+}
+//----------------------------------------------------
+
+function doSearch(strSortOrder) {
+// display the list of matching customers in the page
+
+  var strCustID = '';
+  var strCustName = '';
+
+  // get one or other value from text boxes depending on selection
+  if (document.all('optByID').checked) {
+    strCustID = document.all('txtCustID').value.toUpperCase();
+    var msg = "Listing customers with an<br /><b>ID</b> that matches: '<b>"
+        + strCustID + "</b>'";
+  }
+  else {
+    strCustName = document.all('txtCustName').value;
+    var msg = "Listing customers whose<br /><b>Name</b> contains: '<b>"
+        + strCustName + "</b>'";
+  }
+  document.all('lblStatus').innerHTML = msg;
+
+  // get the result of transforming the XML into a string for display
+  // uses customer ID or name as a parameter to select matching nodes
+  var strResult = getStyledResult(strCustID, strCustName, strSortOrder);
+  if (strResult.length > 0) {
+    document.all('divResult').innerHTML = strResult;
+    msg = 'Click a <b>Customer Name</b> in the grid above to'
+        + '<br />list all of the orders for that customer ... '
+        + 'Click<br />a <b>column heading</b> in the grid above to sort'
+        + '<br /> the customers by the values in that column ...'
+  }
+  else {
+    msg = 'No matching customers found in database ...';
+  }
+  document.all('lblMessage').innerHTML = msg;
+}
+
+//----------------------------------------------------
+
+function getStyledResult(strCustID, strCustName, strSortOrder) {
+// returns the result of applying an XSLT transformation to the
+// customer list as a string containing the HTML to display
+
+  // create the XPath required by the style sheet
+  if (strCustID.length > 0)
+    var strXPath = 'descendant::Customers[starts-with(child::CustomerID, $custid)]'
+  else
+    var strXPath = 'descendant::Customers[contains(child::CompanyName, $custname)]';
+
+  // specify the appropriate stylesheet
+  var strStyle = '<?xml version="1.0" ?>\n'
+    + '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">\n'
+    + ' <xsl:param name="custid" />\n'
+    + ' <xsl:param name="custname" />\n'
+    + ' <xsl:template match="/">\n'
+    + '  <table id="tblCustomers" cellspacing="0" cellpadding="5"\n'
+    + '         rules="cols" border="1" style="border-collapse:collapse;">\n'
+    + '   <tr style="background-color:silver;">\n'
+    + '    <td align="center">\n'
+    + '      <span style="text-decoration:underline;color:blue;cursor:hand"\n'
+    + '         onclick="doSearch(\'CustomerID\')"><b>ID</b></span>\n'
+    + '    </td>\n'
+    + '    <td align="left">\n'
+    + '      <span style="text-decoration:underline;color:blue;cursor:hand"\n'
+    + '         onclick="doSearch(\'CompanyName\')"><b>Customer Name</b></span>\n'
+    + '    </td>\n'
+    + '    <td align="left">\n'
+    + '      <span style="text-decoration:underline;color:blue;cursor:hand"\n'
+    + '         onclick="doSearch(\'City\')"><b>City</b></span>\n'
+    + '    </td>\n'
+    + '   </tr>\n'
+    + '   <xsl:for-each select="' + strXPath + '">\n'
+    + '    <xsl:sort select="' + strSortOrder + '" data-type="text" order="ascending" />\n'
+    + '     <tr>\n'
+    + '      <td align="center" style="background-color:#add8e6;">\n'
+    + '       <xsl:value-of select="CustomerID" />\n'
+    + '      </td>\n'
+    + '      <td align="left">\n'
+    + '       <span style="text-decoration:underline;color:blue;cursor:hand">\n'
+    + '         <xsl:attribute name="onclick">\n'
+    + '          window.location.href="view-orders.hta?customerid=<xsl:value-of select="CustomerID" />";\n'
+    + '         </xsl:attribute>\n'
+    + '         <xsl:value-of select="CompanyName" />\n'
+    + '       </span>\n'
+    + '      </td>\n'
+    + '      <td align="left">\n'
+    + '       <xsl:value-of select="City" />\n'
+    + '      </td>\n'
+    + '     </tr>\n'
+    + '   </xsl:for-each>\n'
+    + '  </table>\n'
+    + ' </xsl:template>\n'
+    + '</xsl:stylesheet>';
+
+  // create a new parser object instance
+  var objXMLStyle = new ActiveXObject('MSXML2.FreeThreadedDOMDocument');
+
+  // load the stylesheet as a string
+  objXMLStyle.loadXML(strStyle);
+
+  // create a new XSLTemplate object and set stylesheet
+  var objTemplate = new ActiveXObject('MSXML2.XSLTemplate');
+  objTemplate.stylesheet = objXMLStyle;
+
+  // create a processor to handle the parameters
+  var objProc = objTemplate.createProcessor();
+
+  // specify the XML parser to use
+  objProc.input = objXMLData;
+
+  // set the parameter values
+  objProc.addParameter('custid', strCustID);
+  objProc.addParameter('custname', strCustName);
+
+  // perform transformation and set value of string to return
+  if (objProc.transform() == true)
+    var strResult = objProc.output
+  else
+    var strResult = '';
+  return strResult;
+}
+
+//----------------------------------------------------
+
+// show help on using page in right-hand part of window
+function showHelp() {
+  strHelp = '<b>To list customer orders you can</b>:<p />'
+    + '&nbsp; * Search for customers using their five-character <b>Customer ID</b>.<br />'
+    + '&nbsp; &nbsp; &nbsp; - Enter all or part of a customer identifier in the top text box<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; and click the <b>Search</b> button. You can enter a maximum of<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; <b>five</b> characters, and the list will show all the customers<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; whose ID starts with those characters.<p />'
+    + '&nbsp; * Search for customers using their <b>Name</b>.<br />'
+    + '&nbsp; &nbsp; &nbsp; - Enter all or part of a customer name in the lower text box<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; and click the <b>Search</b> button. You can enter a maximum of<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; <b>40</b> characters, and the list will show all the customers<br />'
+    + '&nbsp; &nbsp; &nbsp; &nbsp; whose name contains that word or set of characters.<p />';
+  document.all('lblMessage').innerHTML = strHelp;
+}
+//----------------------------------------------------
+
+function setCheck(strName) {
+//set radio buttons to correct option as text is typed
+  document.forms(0).elements(strName).checked = true;
+}
+
+//-->
+</script>
+
+<!------------------ HTML page content --------------------->
+
+</head>
+<body link="#0000ff" alink="#0000ff" vlink="#0000ff" onload="pageLoadEvent()">
+
+<div class="heading">View Customer Orders - Select Customer</div><hr />
+
+<form action="">
+<table border="0" cellpadding="20"><tr><td valign="top" bgcolor="#fffacd">
+
+  <!-- controls for specifying the required customer ID or name -->
+  <input type="radio" id="optByID" name="SearchBy" checked="checked" />
+  Search by Customer <u>I</u>D:<br /> &nbsp; &nbsp;
+  <input type="text" id="txtCustID" size="5" maxlength="5" accesskey="I"
+         onkeypress="setCheck('optByID');" /><p /> &nbsp; or<p />
+  <input type="radio" id="optByName" name="SearchBy" />
+  Search by Customer <u>N</u>ame:<br /> &nbsp; &nbsp;
+  <input type="text" id="txtCustName" size="20" maxlength="40"  accesskey="N"
+         onkeypress="setCheck('optByName');" /><p />
+  <button id="btnSearch" disabled="true" accesskey="S" onclick="doSearch('CustomerID')"><u>S</u>earch</button>
+  &nbsp; &nbsp;
+  <button id="btnHelp" accesskey="H" onclick="showHelp()"><u>H</u>elp</button><p />
+  <div style="text-decoration:underline;color:blue;cursor:hand;"
+        id="lblRefresh" onclick="refreshData()">Refresh Data from Server</div><p />
+  <div id="lblStatus">Loading customer list - please wait ...</div>
+
+</td><td valign="top">
+
+  <div id="divResult"></div><p />
+
+  <!-- label to display interactive messages -->
+  <div id="lblMessage"></div>
+
+</td></tr></table>
+</form>
+
+<hr /><span class="cite">&copy;2003 <a class="cite" href="http://www.daveandal.net/books/4923/">Dave And Al Dot Net</a></span>
+
+</body>
+</html>
